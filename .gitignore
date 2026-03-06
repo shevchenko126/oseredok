@@ -1,0 +1,11 @@
+deploy/db
+*.DS_Store
+*.pyc
+*.env
+.env
+venv
+uploads
+.idea
+__pycache__
+.vscode
+.venv
