@@ -33,9 +33,10 @@ def get_apartment(
 @router.get("/", response_model=PaginationSchema)
 def list_apartments(
     page: int = 1,
+    user_id: int | None = None,
     service: AppartmentService = Depends(get_service),
 ):
-    return service.get_list(page)
+    return service.get_list(page, user_id)
 
 
 @router.patch("/{apartment_id}/", response_model=ApartmentOutSchema)

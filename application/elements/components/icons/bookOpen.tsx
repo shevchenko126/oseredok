@@ -1,0 +1,12 @@
+import React from "react";
+import Svg, { Path } from "react-native-svg";
+
+const BookOpenIcon = () => {
+    return (
+        <Svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <Path d="M7.99992 4.66667C7.99992 3.95942 7.71897 3.28115 7.21887 2.78105C6.71877 2.28095 6.0405 2 5.33325 2H1.33325V12H5.99992C6.53035 12 7.03906 12.2107 7.41413 12.5858C7.78921 12.9609 7.99992 13.4696 7.99992 14M7.99992 4.66667V14M7.99992 4.66667C7.99992 3.95942 8.28087 3.28115 8.78097 2.78105C9.28106 2.28095 9.95934 2 10.6666 2H14.6666V12H9.99992C9.46949 12 8.96078 12.2107 8.58571 12.5858C8.21063 12.9609 7.99992 13.4696 7.99992 14" stroke="#3C0878" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
+        </Svg>
+    )
+};
+
+export default BookOpenIcon;
