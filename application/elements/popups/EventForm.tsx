@@ -12,14 +12,14 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import { connect } from "react-redux";
-import IPopupStore from "../store/popup/initStore.interface";
+import IPopupStore from "../../store/popup/initStore.interface";
 import DateTimePicker from '../components/UI/inputs/DateTimePicker'
-import { EventCreate } from '../dto/main';
+import { EventCreate } from '../../dto/main';
 import EventTypeSelector from '../components/edit/EventTypeSelector';
 
-import { createEvent, getSingleEvent, updateEvent } from '../api/main/events';
+import { createEvent, getSingleEvent, updateEvent } from '../../api/main/events';
 // import { appendLog } from '../helpers/writeLog';
-import { useTranslation } from '../helpers/lang';
+import { useTranslation } from '../../helpers/lang';
 
 interface NewEventModalProps {
     visible: boolean;

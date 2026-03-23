@@ -13,14 +13,14 @@ import {
   Platform 
 } from 'react-native';
 import { connect } from 'react-redux';
-import IPopupStore from '../../store/popup/initStore.interface';
+import IPopupStore from '../../../store/popup/initStore.interface';
 
-import { Note } from '../../dto/main/types.gen';
+import { Note } from '../../../dto/main/types.gen';
 import NoteCard from './NotesListItem';
-import { getNotes, INotesFilters } from '../../api/main/notes';
-import { useTranslation } from '../../helpers/lang';
+import { getNotes, INotesFilters } from '../../../api/main/notes';
+import { useTranslation } from '../../../helpers/lang';
 import SearchFilterBar from '../eventTypes/EventTypeListFooter';
-import { IFilterType } from '../../store/popup/initStore.interface';
+import { IFilterType } from '../../../store/popup/initStore.interface';
 
 export interface NotesListProps {
   eventTypeId?: number;

@@ -23,6 +23,7 @@ class Apartment(Base):
 
 @dataclass_sql
 class ApartmentUser(Base):
+    id = Column(Integer, primary_key=True, index=True)
 
     apartment_id = Column(Integer, ForeignKey("apartment.id"), nullable=True)
     apartment = relationship("Apartment", backref="apartmentusers", lazy=True)

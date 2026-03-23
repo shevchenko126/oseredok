@@ -13,15 +13,15 @@ import {
 } from 'react-native';
 import { launchCamera, launchImageLibrary, Asset, CameraOptions, ImageLibraryOptions, PhotoQuality } from 'react-native-image-picker';
 import { connect } from 'react-redux';
-import IPopupStore from '../store/popup/initStore.interface';
+import IPopupStore from '../../store/popup/initStore.interface';
 import EventTypeSelector from '../components/edit/EventTypeSelector';
-import { uploadImage } from '../api/storage';
-import { NoteCreate } from '../dto/main';
-import { createNote, updateNote, deleteNote, getSingleNote } from '../api/main/notes';
+import { uploadImage } from '../../api/storage';
+import { NoteCreate } from '../../dto/main';
+import { createNote, updateNote, deleteNote, getSingleNote } from '../../api/main/notes';
 import ImagesGrid from '../components/notes/ImagesGrid';
 import ImageIcon from '../components/icons/image';
 import CameraIcon from '../components/icons/camera';
-import { useTranslation } from '../helpers/lang';
+import { useTranslation } from '../../helpers/lang';
 
 interface EditNoteModalProps {
   visible: boolean;

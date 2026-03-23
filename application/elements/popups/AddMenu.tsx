@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import IPopupStore from "../store/popup/initStore.interface";
+import IPopupStore from "../../store/popup/initStore.interface";
 import {
   Modal,
   View,
@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { useTranslation } from '../helpers/lang';
+import { useTranslation } from '../../helpers/lang';
 
 interface CreateNewModalProps {
 	visible: boolean;

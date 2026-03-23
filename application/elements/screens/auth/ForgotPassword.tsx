@@ -11,8 +11,8 @@ import {
   ScrollView
 } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import maskEmail from '../../helpers/maskEmail';
-import { useTranslation } from '../../helpers/lang';
+import maskEmail from '../../../helpers/maskEmail';
+import { useTranslation } from '../../../helpers/lang';
 
 interface ForgotPasswordScreenProps {
   email: string

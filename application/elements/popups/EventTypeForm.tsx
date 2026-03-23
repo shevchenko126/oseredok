@@ -10,12 +10,11 @@ import {
   Platform
 } from 'react-native';
 import { connect } from "react-redux";
-import IPopupStore from "../store/popup/initStore.interface";
+import IPopupStore from "../../store/popup/initStore.interface";
 // npm install react-native-emoji-selector
-import EmojiSelector from 'react-native-emoji-selector';
-import { EventTypeCreate } from '../dto/main';
-import { createEventType, getSingleEventType, updateEventType } from '../api/main/eventTypes';
-import { useTranslation } from '../helpers/lang';
+import { EventTypeCreate } from '../../dto/main';
+import { createEventType, getSingleEventType, updateEventType } from '../../api/main/eventTypes';
+import { useTranslation } from '../../helpers/lang';
 
 interface AddEventTypeModalProps {
     visible: boolean;
@@ -32,9 +31,6 @@ const EventTypeModalForm = ({ visible, onClose, closeEditPopup, objectId, setEve
     const t = useTranslation();
     const inputRef = useRef(null);
 
-    const handleEmojiPress = (e: string) => {
-        setObj({ ...obj, emoji: e });
-    };
 
     const onAdd = async () => {
       if (obj.title?.trim()) {
@@ -105,16 +101,6 @@ const EventTypeModalForm = ({ visible, onClose, closeEditPopup, objectId, setEve
                         />
                     </View>
 
-                    {/* Селектор эмоджи */}
-                    <View style={styles.pickerContainer}>
-                        <EmojiSelector
-                            onEmojiSelected={handleEmojiPress}
-                            showSearchBar={false}
-                            showSectionTitles={false}
-                            // category={Categories.smileys}
-                            columns={8}
-                        />
-                    </View>
                 </KeyboardAvoidingView>
             </View>
         </Modal>

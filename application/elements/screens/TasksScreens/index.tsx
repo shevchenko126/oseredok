@@ -2,8 +2,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import TasksListScreen from './List';
-import type { RootStackParamList } from '../../navigation/types';
-import { useTranslation } from '../../helpers/lang';
+import type { RootStackParamList } from '../../../navigation/types';
+import { useTranslation } from '../../../helpers/lang';
 
 export type TaskStackParams = {
   TasksList: undefined;

@@ -10,10 +10,10 @@ import {
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
-import { getNotifications, NotificationDto, NotificationsResponse } from '../../api/main/notifications';
-import { AuthContext } from '../../helpers/auth';
-import { LanguageContext, useTranslation } from '../../helpers/lang';
-import { formatDate } from '../../helpers/formatDate';
+import { getNotifications, NotificationDto, NotificationsResponse } from '../../../api/main/notifications';
+import { AuthContext } from '../../../helpers/auth';
+import { LanguageContext, useTranslation } from '../../../helpers/lang';
+import { formatDate } from '../../../helpers/formatDate';
 
 interface NotificationListItem extends NotificationDto {
   id?: number | string;

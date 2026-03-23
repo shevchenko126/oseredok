@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import IPopupStore from "../../../store/popup/initStore.interface";
+import IPopupStore from "../../../../store/popup/initStore.interface";
 import {
   View,
   Text,
@@ -12,7 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import SearchFilterBar from '../../../components/eventTypes/EventTypeListFooter';
-import { useTranslation } from '../../../helpers/lang';
+import { useTranslation } from '../../../../helpers/lang';
 
 
 

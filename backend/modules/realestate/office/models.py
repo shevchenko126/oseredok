@@ -23,6 +23,7 @@ class Office(Base):
 
 @dataclass_sql
 class OfficeUser(Base):
+    id = Column(Integer, primary_key=True, index=True)
 
     office_id = Column(Integer, ForeignKey("office.id"), nullable=True)
     office = relationship("Office", backref="officeusers", lazy=True)

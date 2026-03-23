@@ -12,10 +12,10 @@ import TrashIcon from "../../components/icons/trash";
 import * as Keychain from 'react-native-keychain';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../../navigation/types';
-import { deleteAccount } from "../../api/auth";
-import { AuthContext } from '../../helpers/auth';
-import { useTranslation } from '../../helpers/lang';
+import type { RootStackParamList } from '../../../navigation/types';
+import { deleteAccount } from "../../../api/auth";
+import { AuthContext } from '../../../helpers/auth';
+import { useTranslation } from '../../../helpers/lang';
 
 export default function DeleteAccountScreen() {
 

@@ -5,8 +5,8 @@ import ProfileScreen from './Profile';
 import EditProfileScreen from './Edit';
 import NotificationsScreen from './Notifications';
 import DeleteAccountScreen from './DeleteAccount';
-import type { RootStackParamList } from '../../navigation/types';
-import { useTranslation } from '../../helpers/lang';
+import type { RootStackParamList } from '../../../navigation/types';
+import { useTranslation } from '../../../helpers/lang';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

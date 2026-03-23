@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   FlatList,
 } from 'react-native';
-import { changeMe } from '../api/auth';
+import { changeMe } from '../../api/auth';
 import {
   useTranslation,
   LanguageContext,
@@ -16,7 +16,7 @@ import {
   availableLanguageCodes,
   type LanguageCode,
   setCurrentLanguage
-} from '../helpers/lang';
+} from '../../helpers/lang';
 
 interface Props {
   visible: boolean;

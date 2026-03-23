@@ -8,18 +8,18 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { connect } from "react-redux";
-import IPopupStore from "../store/popup/initStore.interface";
+import IPopupStore from "../../store/popup/initStore.interface";
 import { useNavigation, CommonActions } from '@react-navigation/native';
 
-import { getDashboardEventType } from '../api/main/dashboard';
+import { getDashboardEventType } from '../../api/main/dashboard';
 import EventTypeSelector from '../components/edit/EventTypeSelector';
-import { deleteEvent } from '../api/main/events';
-import { deleteEventType } from '../api/main/eventTypes';
-import { deleteTask } from '../api/main/tasks';
-import { deleteNote } from '../api/main/notes';
+import { deleteEvent } from '../../api/main/events';
+import { deleteEventType } from '../../api/main/eventTypes';
+import { deleteTask } from '../../api/main/tasks';
+import { deleteNote } from '../../api/main/notes';
 import type { NavigationProp } from '@react-navigation/native';
 import type { RootStackParamList } from "../navigation/types";
-import { useTranslation } from '../helpers/lang';
+import { useTranslation } from '../../helpers/lang';
 
 interface DeleteEventTypeModalProps {
     visible: boolean;

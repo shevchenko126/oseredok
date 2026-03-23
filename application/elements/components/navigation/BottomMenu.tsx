@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import IPopupStore from "../../store/popup/initStore.interface";
+import IPopupStore from "../../../store/popup/initStore.interface";
 import {
   View,
   TouchableOpacity,

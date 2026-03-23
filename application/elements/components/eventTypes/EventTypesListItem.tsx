@@ -5,12 +5,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { EventTypeStackParams } from '../../screens/EventTypeScreens';
-import { EventType } from '../../dto/main/types.gen';
-import { continueEvent, createEvent, pauseEvent, stopEvent } from '../../api/main/events';
-import { getSingleEventType } from '../../api/main/eventTypes';
+import { EventType } from '../../../dto/main/types.gen';
+import { continueEvent, createEvent, pauseEvent, stopEvent } from '../../../api/main/events';
+import { getSingleEventType } from '../../../api/main/eventTypes';
 import Timer from './Timer';
-import { LanguageContext, useTranslation,  } from '../../helpers/lang';
-import { formatDate } from '../../helpers/formatDate';
+import { LanguageContext, useTranslation,  } from '../../../helpers/lang';
+import { formatDate } from '../../../helpers/formatDate';
 
 type ListItemProps = {
   item: EventType;

@@ -1,7 +1,7 @@
 // FilterSheet.tsx
 import React, { useEffect, useRef } from 'react';
 import { connect } from "react-redux";
-import IPopupStore, { IFilterType } from "../store/popup/initStore.interface";
+import IPopupStore, { IFilterType } from "../../store/popup/initStore.interface";
 import {
   Modal,
   View,
@@ -13,7 +13,7 @@ import {
   ScrollView,
   TouchableWithoutFeedback
 } from 'react-native';
-import { useTranslation } from '../helpers/lang';
+import { useTranslation } from '../../helpers/lang';
 
 
 const filters = {

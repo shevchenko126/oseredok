@@ -10,14 +10,14 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { UserInfo } from '../../dto/auth/types.gen';
-import { changeMe, getMe } from '../../api/auth';
+import { UserInfo } from '../../../dto/auth/types.gen';
+import { changeMe, getMe } from '../../../api/auth';
 import { useNavigation } from '@react-navigation/native';
 import { launchImageLibrary, Asset, CameraOptions, ImageLibraryOptions, PhotoQuality } from 'react-native-image-picker';
-import { getImage, uploadImage, toThumbnailName } from '../../api/storage';
+import { getImage, uploadImage, toThumbnailName } from '../../../api/storage';
 import { connect } from "react-redux";
-import IPopupStore from "../../store/popup/initStore.interface";
-import { useTranslation } from '../../helpers/lang';
+import IPopupStore from "../../../store/popup/initStore.interface";
+import { useTranslation } from '../../../helpers/lang';
 
 
 interface IEditProfileScreenProps {

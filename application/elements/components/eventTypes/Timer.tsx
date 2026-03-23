@@ -11,7 +11,7 @@ const Timer = ({ startDuration = 0, startDate = 0, isRunning = false }: IProps) 
 
   const [seconds, setSeconds] = useState(0);
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    let interval: any | null = null;
     
     const startDateDate = typeof startDate === 'number' || typeof startDate === 'string' ? new Date(startDate + "Z") : startDate;
     const startSeconds = startDate? Math.floor((Date.now() - startDateDate.getTime()) / 1000) + startDuration : startDuration;

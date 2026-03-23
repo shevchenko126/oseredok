@@ -6,11 +6,11 @@ import {
   StyleSheet,
 } from 'react-native';
 import { connect } from "react-redux";
-import IPopupStore from "../../store/popup/initStore.interface";
+import IPopupStore from "../../../store/popup/initStore.interface";
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { EventType } from '../../dto/main/types.gen'
-import { getEventTypes } from '../../api/main/eventTypes';
-import { useTranslation } from '../../helpers/lang';
+import { EventType } from '../../../dto/main/types.gen'
+import { getEventTypes } from '../../../api/main/eventTypes';
+import { useTranslation } from '../../../helpers/lang';
 
 interface IProps {
     onChange: (eventTypeId: number | null) => void;

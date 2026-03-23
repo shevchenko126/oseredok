@@ -6,7 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useTranslation } from '../../../helpers/lang';
+import { useTranslation } from '../../../../helpers/lang';
 
 
 interface PriorityStarsProps {

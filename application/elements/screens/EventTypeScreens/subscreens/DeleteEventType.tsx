@@ -11,13 +11,13 @@ import {
 } from 'react-native';
 import {
   useTranslation,
-} from '../../../helpers/lang';
-import { DashboardBase, EventType } from '../../../dto/main';
-import { getDashboardEventType } from '../../../api/main/dashboard';
+} from '../../../../helpers/lang';
+import { DashboardBase, EventType } from '../../../../dto/main';
+import { getDashboardEventType } from '../../../../api/main/dashboard';
 import { useNavigation } from '@react-navigation/native';
 import { connect } from "react-redux";
-import IPopupStore from "../../../store/popup/initStore.interface";
-import { getSingleEventType } from '../../../api/main/eventTypes';
+import IPopupStore from "../../../../store/popup/initStore.interface";
+import { getSingleEventType } from '../../../../api/main/eventTypes';
 import ClockIcon from '../../../components/icons/clock';
 import CheckSquareIcon from '../../../components/icons/checkSquare';
 import BookOpenIcon from '../../../components/icons/bookOpen';

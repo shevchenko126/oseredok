@@ -13,11 +13,11 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import type { NavigationProp } from '@react-navigation/native';  
-import IPopupStore, { IFilterType } from "../../store/popup/initStore.interface";
-import { getSingleEventType } from "../../api/main/eventTypes";
+import IPopupStore, { IFilterType } from "../../../store/popup/initStore.interface";
+import { getSingleEventType } from "../../../api/main/eventTypes";
 import type { RootStackParamList } from "../../navigation/types";
 import FilterIcon from '../icons/filter';
-import { useTranslation } from '../../helpers/lang';
+import { useTranslation } from '../../../helpers/lang';
 
 type Props = {
     title?: string;

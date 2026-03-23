@@ -6,7 +6,7 @@ import SingleEventTypeEvents from './subscreens/SingleEventTypeEvents';
 import SingleEventTypeTasks from './subscreens/SingleEventTypeTasks';
 import SingleEventTypeNotes from './subscreens/SingleEventTypeNotes';
 import SingleEventTypeEdit from './subscreens/SingleEventTypeEdit';
-import type { RootStackParamList } from '../../navigation/types';
+import type { RootStackParamList } from '../../../navigation/types';
 import DeleteEventType from './subscreens/DeleteEventType';
 
 const SingleEventScreen: FC = () => {

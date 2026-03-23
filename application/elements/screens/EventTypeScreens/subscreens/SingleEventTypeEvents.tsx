@@ -8,15 +8,15 @@ import {
   ListRenderItemInfo,
   ActivityIndicator,
 } from 'react-native';
-import { formatDuration } from '../../../helpers/formatDuration';
-import { formatDateShort } from '../../../helpers/formatDate';
-import { AuthContext } from '../../../helpers/auth';
-import { Event, EventType, GroupOut } from '../../../dto/main/types.gen';
+import { formatDuration } from '../../../../helpers/formatDuration';
+import { formatDateShort } from '../../../../helpers/formatDate';
+import { AuthContext } from '../../../../helpers/auth';
+import { Event, EventType, GroupOut } from '../../../../dto/main/types.gen';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { getEventsByEventType, getSingleEventType } from '../../../api/main/eventTypes';
+import { getEventsByEventType, getSingleEventType } from '../../../../api/main/eventTypes';
 import RedClockIcon from '../../../components/icons/redClock';
 import SearchFilterBar from '../../../components/eventTypes/EventTypeListFooter';
-import { LanguageContext, useTranslation } from '../../../helpers/lang';
+import { LanguageContext, useTranslation } from '../../../../helpers/lang';
 
 interface EventsScreenProps {
   eventTypeId: number;

@@ -11,8 +11,8 @@ import {
   FlatList,
   Dimensions,
 } from 'react-native';
-import { getToken } from '../../helpers/keychain';
-import { toThumbnailName } from '../../api/storage';
+import { getToken } from '../../../helpers/keychain';
+import { toThumbnailName } from '../../../api/storage';
 const API_STORAGE_URL = Config && Config.API_STORAGE_URL || "http://localhost:8002";
 
 

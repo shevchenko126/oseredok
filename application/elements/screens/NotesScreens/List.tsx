@@ -6,9 +6,9 @@ import {
 } from 'react-native';
 
 import NotesList from '../../components/notes/NotesList';
-import { Note } from '../../dto/main/types.gen';
-import { AuthContext } from '../../helpers/auth';
-import IPopupStore from '../../store/popup/initStore.interface';
+import { Note } from '../../../dto/main/types.gen';
+import { AuthContext } from '../../../helpers/auth';
+import IPopupStore from '../../../store/popup/initStore.interface';
 import NoteCard from '../../components/notes/NotesListItem';
 
 const mapState = ({

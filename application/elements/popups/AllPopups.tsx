@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import IPopupStore from "../store/popup/initStore.interface";
+import IPopupStore from "../../store/popup/initStore.interface";
 import AddNewModal from "./AddMenu";
 import EventTypeForm from "./EventTypeForm"
 import EventForm from "./EventForm"

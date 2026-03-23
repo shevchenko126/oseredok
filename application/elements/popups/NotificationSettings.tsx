@@ -7,14 +7,14 @@ import {
   TouchableWithoutFeedback,
   Switch
 } from 'react-native';
-import { changeMe, getMe } from '../api/auth';
+import { changeMe, getMe } from '../../api/auth';
 import {
   NotificationValue
-} from '../helpers/notif';
+} from '../../helpers/notif';
 import {
   useTranslation
-} from '../helpers/lang';
-import { requestPushPermissionAndGetToken } from '../helpers/pushNotifications';
+} from '../../helpers/lang';
+import { requestPushPermissionAndGetToken } from '../../helpers/pushNotifications';
 
 
 

@@ -4,11 +4,11 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import { Note } from '../../dto/main/types.gen';
+import { Note } from '../../../dto/main/types.gen';
 import ImagesGrid from './ImagesGrid';
-import { sliceTitle } from '../../helpers/sliceTitle';
-import { LanguageContext } from '../../helpers/lang';
-import { formatDateShort } from '../../helpers/formatDate';
+import { sliceTitle } from '../../../helpers/sliceTitle';
+import { LanguageContext } from '../../../helpers/lang';
+import { formatDateShort } from '../../../helpers/formatDate';
 
 
 interface NoteCardProps {

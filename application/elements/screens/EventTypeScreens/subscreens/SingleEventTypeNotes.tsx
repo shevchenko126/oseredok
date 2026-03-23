@@ -2,7 +2,7 @@ import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 
 import NotesList from '../../../components/notes/NotesList';
-import IPopupStore from '../../../store/popup/initStore.interface';
+import IPopupStore from '../../../../store/popup/initStore.interface';
 
 const mapState = ({
   popup,

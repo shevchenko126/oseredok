@@ -9,10 +9,10 @@ import LoginPassword from './LoginPassword';
 import ForgotPassword from './ForgotPassword';
 // import ForgotPasswordPassword from './ForgotPasswordPassword';
 import SignupPassword from './SignupPassword';
-import { isEmail, login, register, forgotPasswordConfirm, forgotPasswordChange, forgotPassword, confirmEmail, sendConfirmationCode } from '../../api/auth';
-import { saveProfile } from '../../helpers/storage';
-import { saveToken } from '../../helpers/keychain';
-import { requestPushPermissionAndGetToken } from '../../helpers/pushNotifications';
+import { isEmail, login, register, forgotPasswordConfirm, forgotPasswordChange, forgotPassword, confirmEmail, sendConfirmationCode } from '../../../api/auth';
+import { saveProfile } from '../../../helpers/storage';
+import { saveToken } from '../../../helpers/keychain';
+import { requestPushPermissionAndGetToken } from '../../../helpers/pushNotifications';
 
 // Simple flow controller for authentication screens
 export default function StartScreen({ onAuth }: { onAuth?: () => void }) {

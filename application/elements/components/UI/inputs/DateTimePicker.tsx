@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import { LanguageContext } from '../../../helpers/lang';
+import { LanguageContext } from '../../../../helpers/lang';
 
 interface EditDateTimeProps {
     value: string | null;

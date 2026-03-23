@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import EventTypesListScreen from './List';
 import EventTypesSingleScreen from './SingleEventType';
-import type { RootStackParamList } from '../../navigation/types';
-import { useTranslation } from '../../helpers/lang';
+import type { RootStackParamList } from '../../../navigation/types';
+import { useTranslation } from '../../../helpers/lang';
 
 export type EventTypeStackParams = {
   EventTypesList: undefined;

@@ -10,7 +10,7 @@ import {
   Platform
 } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { useTranslation } from '../../helpers/lang';
+import { useTranslation } from '../../../helpers/lang';
 
 
 const PasswordScreen = ({ email = 'youremail@example.com', onContinue, onForgot, onBack, isError }:any) => {

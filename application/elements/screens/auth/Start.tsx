@@ -9,8 +9,8 @@ import {
   Linking,
 } from 'react-native';
 import LongButton from '../../components/UI/LongButton';
-import { useTranslation } from '../../helpers/lang';
-import { getTermsUrl } from '../../api/auth';
+import { useTranslation } from '../../../helpers/lang';
+import { getTermsUrl } from '../../../api/auth';
 /**
  * Sign‑in / onboarding screen for Obscure Drive.
  * Pure UI ‑ no business logic; wire up handlers via props.
@@ -34,7 +34,7 @@ const StartScreen: React.FC<SignInScreenProps> = ({
       >
         {/* Logo */}
         <View style={styles.logoWrapper}>
-            <Image source={require('../../assets/images/logo.png')} style={styles.logoImage} resizeMode="contain" />
+            <Image source={require('../../../assets/images/logo.png')} style={styles.logoImage} resizeMode="contain" />
         </View>
 
         {/* Tagline */}

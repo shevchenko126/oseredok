@@ -8,10 +8,10 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { changePassword } from '../api/auth';
+import { changePassword } from '../../api/auth';
 import PasswordForm from '../components/settings/PasswordForm';
 import SuccessIcon from '../components/icons/success';
-import { useTranslation } from '../helpers/lang';
+import { useTranslation } from '../../helpers/lang';
 
 interface ChangePasswordModalProps {
   visible: boolean;

@@ -10,16 +10,16 @@ import {
   Platform } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useFocusEffect } from '@react-navigation/native';
-import { useTranslation } from '../../helpers/lang';
+import { useTranslation } from '../../../helpers/lang';
 import { connect } from 'react-redux';
 
-import { getEventTypes } from '../../api/main/eventTypes';
-import { getTasks } from '../../api/main/tasks';
-import { EventType, Task } from '../../dto/main/types.gen';
-import { AuthContext } from '../../helpers/auth';
-import IPopupStore from '../../store/popup/initStore.interface';
+import { getEventTypes } from '../../../api/main/eventTypes';
+import { getTasks } from '../../../api/main/tasks';
+import { EventType, Task } from '../../../dto/main/types.gen';
+import { AuthContext } from '../../../helpers/auth';
+import IPopupStore from '../../../store/popup/initStore.interface';
 import SearchFilterBar from '../../components/eventTypes/EventTypeListFooter';
-import { IFilterType } from '../../store/popup/initStore.interface';
+import { IFilterType } from '../../../store/popup/initStore.interface';
 import TasksListByEventType from '../../components/tasks/TasksList.tsx';
 
 interface ITasksListProps {

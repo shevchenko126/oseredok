@@ -12,14 +12,14 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import { connect } from "react-redux";
-import IPopupStore from "../store/popup/initStore.interface";
+import IPopupStore from "../../store/popup/initStore.interface";
 import EventTypeSelector from '../components/edit/EventTypeSelector';
-import { TaskCreate } from '../dto/main';
+import { TaskCreate } from '../../dto/main';
 import Checkbox from '../components/UI/inputs/Checkbox';
 import PriorityStars from '../components/UI/inputs/PriorityStars';
 import DateTimePicker from '../components/UI/inputs/DateTimePicker';
-import { createTask, updateTask, deleteTask, getSingleTask } from '../api/main/tasks';
-import { useTranslation } from '../helpers/lang';
+import { createTask, updateTask, deleteTask, getSingleTask } from '../../api/main/tasks';
+import { useTranslation } from '../../helpers/lang';
 
 
 export type EventType = { id: string; icon: string; label: string };

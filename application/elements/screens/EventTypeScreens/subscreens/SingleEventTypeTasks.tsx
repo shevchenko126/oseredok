@@ -5,10 +5,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import TasksList from '../../../components/tasks/TasksList';
-import { AuthContext } from '../../../helpers/auth';
-import IPopupStore from '../../../store/popup/initStore.interface';
+import { AuthContext } from '../../../../helpers/auth';
+import IPopupStore from '../../../../store/popup/initStore.interface';
 import SearchFilterBar from '../../../components/eventTypes/EventTypeListFooter';
-import { IFilterType } from '../../../store/popup/initStore.interface';
+import { IFilterType } from '../../../../store/popup/initStore.interface';
 
 const mapState = ({
   popup,

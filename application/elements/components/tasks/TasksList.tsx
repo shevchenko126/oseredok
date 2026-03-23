@@ -13,13 +13,13 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
-import IPopupStore from '../../store/popup/initStore.interface';
+import IPopupStore from '../../../store/popup/initStore.interface';
 
-import { Task } from '../../dto/main/types.gen';
-import { getTasks, ITasksFilters, updateTask } from '../../api/main/tasks';
-import { useTranslation, LanguageContext } from '../../helpers/lang';
-import { formatDate } from '../../helpers/formatDate';
-import { IFilterType } from '../../store/popup/initStore.interface';
+import { Task } from '../../../dto/main/types.gen';
+import { getTasks, ITasksFilters, updateTask } from '../../../api/main/tasks';
+import { useTranslation, LanguageContext } from '../../../helpers/lang';
+import { formatDate } from '../../../helpers/formatDate';
+import { IFilterType } from '../../../store/popup/initStore.interface';
 
 export interface TasksListProps {
   eventTypeId?: number;

@@ -8,11 +8,11 @@ import {
   Animated,
 } from 'react-native'
 import { connect } from "react-redux";
-import IPopupStore from "../../store/popup/initStore.interface";
-import { useTranslation } from '../../helpers/lang';
+import IPopupStore from "../../../store/popup/initStore.interface";
+import { useTranslation } from '../../../helpers/lang';
 // import { useNavigation } from '@react-navigation/native'
 
-export type Tab = 'Events' | 'Tasks' | 'Notes' | 'Edit' | 'Delete';
+export type Tab = 'Events' | 'Tasks' | 'Notes' | 'Edit';
 
 interface CustomTabBarProps {
     selected: Tab

@@ -10,7 +10,7 @@ import {
   SafeAreaView
 } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { useTranslation } from '../../helpers/lang';
+import { useTranslation } from '../../../helpers/lang';
 
 interface CreatePasswordScreenProps {
     title?: string

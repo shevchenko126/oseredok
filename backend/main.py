@@ -8,6 +8,7 @@ from core.config import settings
 from db.session import engine
 from db.base_class import Base
 from starlette.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 
 
 setup_logging()
@@ -17,6 +18,8 @@ def create_tables():
 
 
 def start_application():
+    load_dotenv()
+    
     app = FastAPI(title=settings.PROJECT_TITLE, version=settings.PROJECT_VERSION)
     from api.router import api_router
 

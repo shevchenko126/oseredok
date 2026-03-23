@@ -1,8 +1,8 @@
 import React, { FC, useCallback, useContext, useState } from 'react';
 import { connect } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
-import IPopupStore from '../../store/popup/initStore.interface';
-import { AuthContext } from '../../helpers/auth';
+import IPopupStore from '../../../store/popup/initStore.interface';
+import { AuthContext } from '../../../helpers/auth';
 import {
   ActivityIndicator,
   FlatList,
@@ -13,11 +13,11 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { EventType } from '../../dto/main/types.gen';
+import { EventType } from '../../../dto/main/types.gen';
 import ListItem from '../../components/eventTypes/EventTypesListItem';
 import EventTypeListFooter from '../../components/eventTypes/EventTypeListFooter';
-import { getEventTypes, IFilters } from '../../api/main/eventTypes';
-import { useTranslation } from '../../helpers/lang';
+import { getEventTypes, IFilters } from '../../../api/main/eventTypes';
+import { useTranslation } from '../../../helpers/lang';
 
 interface IEventTypesListScreenProps {
   openPopup: (popupToOpen: string) => void;

@@ -25,14 +25,15 @@ const AuthButton: React.FC<AuthButtonProps> = ({
       onPress={onPress}
       style={[styles.btn, inverted ? styles.btnInverted : styles.btnDefault, style]}
     >
-      {icon && (
+      {icon}
+      {/* {icon && (
         <Icon
           name={icon}
           size={20}
           color={inverted ? '#fff' : '#000'}
           style={styles.btnIcon}
         />
-      )}
+      )} */}
       <Text style={[styles.btnLabel, inverted && styles.btnLabelInverted]}>{label}</Text>
     </TouchableOpacity>
   );

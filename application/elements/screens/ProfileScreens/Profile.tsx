@@ -12,20 +12,20 @@ import SettingsItem from '../../components/settings/SettingsItem';
 import * as Keychain from 'react-native-keychain';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { connect } from "react-redux";
-import IPopupStore from "../../store/popup/initStore.interface";
+import IPopupStore from "../../../store/popup/initStore.interface";
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../../navigation/types';
-import { getMe } from '../../api/auth';
-import type { UserInfo } from '../../dto/auth/types.gen';
+import type { RootStackParamList } from '../../../navigation/types';
+import { getMe } from '../../../api/auth';
+import type { UserInfo } from '../../../dto/auth/types.gen';
 import {
   useTranslation,
   LanguageContext,
   languageNameKeys,
-} from '../../helpers/lang';
-import { AuthContext } from '../../helpers/auth';
-import { getDashboardTotal } from '../../api/main/dashboard';
-import { DashboardBase } from '../../dto/main';
-import { getImage, toThumbnailName } from '../../api/storage';
+} from '../../../helpers/lang';
+import { AuthContext } from '../../../helpers/auth';
+import { getDashboardTotal } from '../../../api/main/dashboard';
+import { DashboardBase } from '../../../dto/main';
+import { getImage, toThumbnailName } from '../../../api/storage';
 import ClockIcon from '../../components/icons/clock';
 import CheckSquareIcon from '../../components/icons/checkSquare';
 import BookOpenIcon from '../../components/icons/bookOpen';
