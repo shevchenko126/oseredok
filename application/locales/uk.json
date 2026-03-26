@@ -1,6 +1,9 @@
 {
   "notes": "Нотатки",
   "tasks": "Таски",
+  "news": "Новини",
+  "finance": "Фінанси",
+  "documents": "Документи",
   "profile": "Профіль",
   "editProfile": "Редагування профілю",
   "eventTypes": "Типи подій",

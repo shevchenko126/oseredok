@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback, useMemo } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import EventTypeStack from './elements/screens/EventTypeScreens';
-import TaskStack from './elements/screens/TasksScreens';
-import NotesStack from './elements/screens/NotesScreens';
+import NewsStack from './elements/screens/NewsScreens';
+import FinanceStack from './elements/screens/FinanceScreens';
+import DocumentsStack from './elements/screens/DocumentsScreens';
 import ProfileStack from './elements/screens/ProfileScreens';
 import type { RootStackParamList } from './navigation/types';
 import StartScreen from './elements/screens/auth/StartScreen';
@@ -86,7 +86,7 @@ export default function App() {
 
   const openTaskFromNotification = useCallback((taskId: number) => {
     if (navigationRef.isReady()) {
-      navigationRef.navigate('Tasks');
+      navigationRef.navigate('Finance');
     }
 
     store.dispatch({
@@ -192,28 +192,28 @@ export default function App() {
                   {isAuth ? (
                     <>
                       <RootStack.Navigator
-                        initialRouteName="EventTypes"
+                        initialRouteName="News"
                         screenOptions={{ headerShown: false }}
                       >
                         <RootStack.Screen
-                          name="EventTypes"
-                          component={EventTypeStack}
+                          name="News"
+                          component={NewsStack}
                           options={({ route }) => ({
                             headerShown: false,
                             animation: route.params?.noAnim ? 'none' : 'default',
                           })}
                         />
                         <RootStack.Screen
-                          name="Tasks"
-                          component={TaskStack}
+                          name="Finance"
+                          component={FinanceStack}
                           options={({ route }) => ({
                             headerShown: false,
                             animation: route.params?.noAnim ? 'none' : 'default',
                           })}
                         />
                         <RootStack.Screen
-                          name="Notes"
-                          component={NotesStack}
+                          name="Documents"
+                          component={DocumentsStack}
                           options={({ route }) => ({
                             headerShown: false,
                             animation: route.params?.noAnim ? 'none' : 'default',
