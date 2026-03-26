@@ -15,6 +15,9 @@ class User(Base):
     last_name = Column(String, nullable=True)
     phone = Column(String, nullable=True)
 
+    username = Column(String, nullable=True)
+    language = Column(String, nullable=True)
+
     is_active = Column(Boolean, default=True)
     is_confirmed = Column(Boolean, default=False)
     email_check_code = Column(String, nullable=True)
