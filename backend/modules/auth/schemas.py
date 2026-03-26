@@ -95,3 +95,12 @@ class UserChangeEmailSchema(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class SendConfirmationCodeSchema(BaseModel):
+    email: EmailStr
+
+
+class ConfirmEmailSchema(BaseModel):
+    email: EmailStr
+    code: str
