@@ -15,10 +15,12 @@ from .service import AuthService
 from .models import User
 from .schemas import (
     UserOutWithTokenSchema,
+    UserOutSchema,
     UserAddSchema,
     UserLoginSchema,
     SendConfirmationCodeSchema,
     ConfirmEmailSchema,
+    UserUpdateSchema,
 )
 
 router = APIRouter()
@@ -84,39 +86,24 @@ def post_login(
     return {"user": user, "token": token}
 
 
-@router.get("/me/", response_model=UserOutWithTokenSchema)
+@router.get("/me/", response_model=UserOutSchema)
 def get_me(
     user: User = Depends(get_user),
-    token: str = Depends(oauth2_scheme)
 ):
     """Get info about current user."""
-    return {"user": user, "token": token}
+    return UserOutSchema.from_orm(user)
 
 
-
-# @router.patch("/{user_id}/", response_model=UserOutWithTokenSchema)
-# def patch_change_by_user_id(
-#     user_id: int = Path,
-#     su: User = Depends(super_user),
-#     token: str = Depends(oauth2_scheme),
-#     db: Session = Depends(get_db),
-#     user_in: UserUpdateByAdminSchema = Body(...),
-# ):
-#     """Update user info by admin"""
-#     user_data = user_in.dict(exclude_unset=True)
-
-#     if user_data:
-#         try:
-
-#             db.query(User).filter(User.id == user_id).update(user_data)
-#             db.commit()
-#         except IntegrityError:
-#             raise HTTPException(
-#                 status_code=400, detail="User with this email already exists"
-#             )
-#     else:
-#         raise HTTPException(status_code=400, detail="No data to update")
-
-#     user = db.query(User).filter(User.id == user_id).first()
-#     user.token = token
-#     return user
+@router.patch("/me/", response_model=UserOutSchema)
+def patch_me(
+    user_in: UserUpdateSchema,
+    user: User = Depends(get_user),
+    db: Session = Depends(get_db),
+):
+    """Update current user profile."""
+    user_data = user_in.dict(exclude_unset=True)
+    for field, value in user_data.items():
+        setattr(user, field, value)
+    db.commit()
+    db.refresh(user)
+    return UserOutSchema.from_orm(user)

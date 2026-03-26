@@ -70,23 +70,16 @@ const EditProfileScreen = ({ openPopup }: IEditProfileScreenProps) => {
     if (!isDoneEnabled) return;
     setSaving(true);
     try {
-      changeMe({
-        id: userInfo.id,
-        email: userInfo.email ?? null,
+      const { error } = await changeMe({
         first_name: userInfo.first_name ?? null,
         last_name: userInfo.last_name ?? null,
         avatar_id: userInfo.avatar_id ?? null,
         username: userInfo.username ?? null,
         language: userInfo.language ?? null,
-        is_email_verified: userInfo.is_email_verified,
       });
-      navigation.goBack();
-      // if (!error && data) {
-      //   setUserInfo(prev => ({ ...prev, ...data }));
-      //   // go back to previous screen on success
-      //   // @ts-ignore - basic navigation without typed params
-      //   navigation.goBack();
-      // }
+      if (!error) {
+        navigation.goBack();
+      }
     } catch (e) {
       console.error('Save profile error', e);
     } finally {
@@ -95,11 +88,11 @@ const EditProfileScreen = ({ openPopup }: IEditProfileScreenProps) => {
   };
 
   const updateUserInfo = (field: keyof UserInfo, value: string | null) => {
-    setUserInfo(prev => ({
-      ...prev,
-      [field]: value
-    }));
-    setIsDoneEnabled((userInfo.first_name?.trim() || '').length > 0 && (userInfo.last_name?.trim() || '').length > 0);
+    setUserInfo(prev => {
+      const updated = { ...prev, [field]: value };
+      setIsDoneEnabled((updated.first_name?.trim() || '').length > 0 && (updated.last_name?.trim() || '').length > 0);
+      return updated;
+    });
   };
 
   const handlePickAvatar = async () => {

@@ -24,16 +24,47 @@ class UserOutSchema(BaseUser):
     first_name: str | None = None
     last_name: str | None = None
     phone: str | None = None
+    avatar_id: str | None = None
+    username: str | None = None
+    language: str | None = None
+    is_email_verified: bool | None = None
     is_active: bool
     created_on: datetime | None = None
 
     class Config:
         orm_mode = True
 
+    @classmethod
+    def from_orm(cls, obj):
+        return cls(
+            id=obj.id,
+            email=obj.email,
+            first_name=obj.first_name,
+            last_name=obj.last_name,
+            phone=obj.phone,
+            avatar_id=obj.avatar_id,
+            username=obj.username,
+            language=obj.language,
+            is_email_verified=getattr(obj, 'is_confirmed', False),
+            is_active=obj.is_active,
+            created_on=obj.created_on,
+        )
+
 
 class UserOutWithTokenSchema(BaseModel):
     user: UserOutSchema | None = None
     token: str | None = None
+
+    class Config:
+        orm_mode = True
+
+
+class UserUpdateSchema(BaseModel):
+    first_name: str | None = None
+    last_name: str | None = None
+    avatar_id: str | None = None
+    username: str | None = None
+    language: str | None = None
 
     class Config:
         orm_mode = True
