@@ -1,6 +1,9 @@
 {
   "notes": "Notes",
   "tasks": "Tasks",
+  "news": "News",
+  "finance": "Finance",
+  "documents": "Documents",
   "profile": "Profile",
   "editProfile": "Edit Profile",
   "eventTypes": "Event Types",
