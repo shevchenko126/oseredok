@@ -33,7 +33,7 @@ def get_user(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme))
 #     return service.check_user_role(token=token, role=UserRole.ADMIN)
 
 
-@router.post("/register/", response_model=UserOutWithTokenSchema, status_code=201)
+@router.post("/signup/", response_model=UserOutWithTokenSchema, status_code=201)
 async def register_user(
     user_in: UserAddSchema,
     background_tasks: BackgroundTasks,
@@ -67,7 +67,7 @@ def confirm_email(
     return {"success": True}
 
 
-@router.post("/login/", response_model=UserOutWithTokenSchema)
+@router.post("/signin/", response_model=UserOutWithTokenSchema)
 def post_login(
     form_data: UserLoginSchema,
     db: Session = Depends(get_db),
