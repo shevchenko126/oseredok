@@ -45,7 +45,7 @@ async def register_user(
     user_db = service.register_user(user_in)
     service.generate_and_send_confirmation_code(user_db.email, background_tasks)
     token = create_access_token(sub=str(user_db.id), user_obj=user_db)
-    return {"user": user_db, "token": token}
+    return {"user": UserOutSchema.from_orm(user_db), "token": token}
 
 
 @router.post("/send-confirmation-code/")
@@ -83,7 +83,7 @@ def post_login(
     token = create_access_token(
         sub=str(user.id), remember=form_data.remember, user_obj=user
     )
-    return {"user": user, "token": token}
+    return {"user": UserOutSchema.from_orm(user), "token": token}
 
 
 @router.get("/me/", response_model=UserOutSchema)

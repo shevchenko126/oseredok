@@ -67,7 +67,7 @@ class Settings:
         USE_CREDENTIALS=MAIL_USE_CREDENTIALS,
         VALIDATE_CERTS=MAIL_VALIDATE_CERTS,
         SUPPRESS_SEND=SUPPRESS_SENDING_EMAILS,
-        TEMPLATE_FOLDER=BASE_DIR / "email" / "templates",
+        TEMPLATE_FOLDER=BASE_DIR / "modules" / "notifications" / "templates",
     )
 
 settings = Settings()

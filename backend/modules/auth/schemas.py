@@ -2,6 +2,8 @@ from typing import Literal
 from pydantic import BaseModel
 from pydantic import EmailStr
 from datetime import datetime
+from modules.realestate.building.models import BuildingUserRole
+from modules.realestate.building.schemas import BuildingOutSchema
 
 
 class BaseUser(BaseModel):
@@ -30,12 +32,15 @@ class UserOutSchema(BaseUser):
     is_email_verified: bool | None = None
     is_active: bool
     created_on: datetime | None = None
+    role: BuildingUserRole | None = None
+    building: BuildingOutSchema | None = None
 
     class Config:
         orm_mode = True
 
     @classmethod
     def from_orm(cls, obj):
+        building, role = cls._get_building_and_role(obj)
         return cls(
             id=obj.id,
             email=obj.email,
@@ -48,7 +53,34 @@ class UserOutSchema(BaseUser):
             is_email_verified=getattr(obj, 'is_confirmed', False),
             is_active=obj.is_active,
             created_on=obj.created_on,
+            role=role,
+            building=building,
         )
+
+    @staticmethod
+    def _get_building_and_role(obj):
+        building_users_raw = getattr(obj, "buildingusers", None)
+        building_users = list(building_users_raw) if building_users_raw else []
+        if not building_users:
+            return None, None
+
+        building_user = next(
+            (bu for bu in building_users if getattr(bu, "building", None)),
+            building_users[0],
+        )
+        if not building_user:
+            return None, None
+
+        building = (
+            BuildingOutSchema.from_orm(building_user.building)
+            if getattr(building_user, "building", None)
+            else None
+        )
+
+        raw_role = getattr(building_user, "role", None)
+        role = BuildingUserRole(raw_role) if raw_role else None
+
+        return building, role
 
 
 class UserOutWithTokenSchema(BaseModel):
