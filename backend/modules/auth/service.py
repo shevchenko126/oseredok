@@ -1,10 +1,19 @@
+import random
+import logging
+
 from sqlalchemy.orm import Session
 from fastapi import Depends, HTTPException
+from fastapi_mail import FastMail, MessageSchema, schemas as mail_schemas
 from jose import JWTError
+from starlette.background import BackgroundTasks
+
 from core.auth import oauth2_scheme, jwt_decode
+from core.config import settings
 from core.security import get_password_hash
 from .models import User
 from .schemas import UserAddSchema
+
+logger = logging.getLogger(__name__)
 
 
 class AuthService:
@@ -73,3 +82,36 @@ class AuthService:
         self.db.refresh(user_db)
 
         return user_db
+
+    def generate_and_send_confirmation_code(self, email: str, background_tasks: BackgroundTasks) -> None:
+        user = self.db.query(User).filter(User.email == email).first()
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+
+        code = str(random.randint(100000, 999999))
+        user.email_check_code = code
+        self.db.commit()
+
+        message = MessageSchema(
+            recipients=[email],
+            subject="Email confirmation code",
+            body=f"Your confirmation code: <b>{code}</b>",
+            subtype=mail_schemas.MessageType.html,
+        )
+        try:
+            fm = FastMail(settings.email_conf)
+            background_tasks.add_task(fm.send_message, message)
+        except Exception as e:
+            logger.error(f"Failed to send confirmation email to {email}: {e}")
+
+    def confirm_email(self, email: str, code: str) -> bool:
+        user = self.db.query(User).filter(User.email == email).first()
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+        if not user.email_check_code or user.email_check_code != code:
+            raise HTTPException(status_code=400, detail="Invalid confirmation code")
+
+        user.is_confirmed = True
+        user.email_check_code = None
+        self.db.commit()
+        return True

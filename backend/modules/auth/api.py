@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime
 
-from fastapi import Depends, HTTPException, APIRouter
+from fastapi import Depends, HTTPException, APIRouter, BackgroundTasks
 from sqlalchemy.orm.session import Session
 
 from core.auth import (
@@ -16,7 +16,9 @@ from .models import User
 from .schemas import (
     UserOutWithTokenSchema,
     UserAddSchema,
-    UserLoginSchema
+    UserLoginSchema,
+    SendConfirmationCodeSchema,
+    ConfirmEmailSchema,
 )
 
 router = APIRouter()
@@ -34,13 +36,35 @@ def get_user(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme))
 @router.post("/register/", response_model=UserOutWithTokenSchema, status_code=201)
 async def register_user(
     user_in: UserAddSchema,
+    background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
-    # user: User = Depends(check_admin_user),
 ):
     service = AuthService(db)
     user_db = service.register_user(user_in)
+    service.generate_and_send_confirmation_code(user_db.email, background_tasks)
     token = create_access_token(sub=str(user_db.id), user_obj=user_db)
     return {"user": user_db, "token": token}
+
+
+@router.post("/send-confirmation-code/")
+async def send_confirmation_code(
+    data: SendConfirmationCodeSchema,
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db),
+):
+    service = AuthService(db)
+    service.generate_and_send_confirmation_code(data.email, background_tasks)
+    return {"success": True}
+
+
+@router.post("/confirm-email/")
+def confirm_email(
+    data: ConfirmEmailSchema,
+    db: Session = Depends(get_db),
+):
+    service = AuthService(db)
+    service.confirm_email(data.email, data.code)
+    return {"success": True}
 
 
 @router.post("/login/", response_model=UserOutWithTokenSchema)
