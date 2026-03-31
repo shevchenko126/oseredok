@@ -167,3 +167,9 @@ class SendConfirmationCodeSchema(BaseModel):
 class ConfirmEmailSchema(BaseModel):
     email: EmailStr
     code: str
+
+
+class SetupBuildingSchema(BaseModel):
+    building_id: int
+    apartment_id: int
+    is_owner: bool = False

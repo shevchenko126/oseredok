@@ -149,5 +149,11 @@
   "passwordRuleNumber": "Contains at least one number",
   "passwordRuleLowercase": "Contains at least one lowercase letter",
   "passwordRuleUppercase": "Contains at least one uppercase letter",
-  "editName": "Edit name"
+  "editName": "Edit name",
+  "selectBuildingHeading": "Your Building",
+  "selectBuildingSubheading": "Select the building and apartment you live in",
+  "selectBuilding": "Select building",
+  "selectApartment": "Select apartment",
+  "isOwner": "I am the owner",
+  "setupBuildingSubmit": "Continue"
 }
