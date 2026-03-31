@@ -24,8 +24,16 @@ export interface PaymentIn {
   description: string | null;
   amount: string;
   is_approved: boolean;
+  file_id: string | null;
   created_by_id: number | null;
   created_at: string | null;
+}
+
+export interface PaymentInCreate {
+  building_id: number;
+  description?: string | null;
+  amount: string;
+  file_id?: string | null;
 }
 
 export interface PaymentOut {
@@ -50,6 +58,44 @@ const authHeaders = async () => {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/json',
   };
+};
+
+export const uploadPaymentFile = async (asset: { uri?: string; fileName?: string | null; type?: string | null }) => {
+  try {
+    const token = await getToken();
+    const formData = new FormData();
+    formData.append('file', {
+      uri: asset.uri,
+      name: asset.fileName ?? `photo_${Date.now()}.jpg`,
+      type: asset.type ?? 'image/jpeg',
+    } as any);
+    const res = await fetch(`${API_URL}/api/v1/storage/`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData,
+    });
+    if (!res.ok) return { data: null, error: true };
+    const data: { uuid: string; filename: string; file_type: string } = await res.json();
+    return { data, error: false };
+  } catch {
+    return { data: null, error: true };
+  }
+};
+
+export const createPaymentIn = async (payload: PaymentInCreate) => {
+  try {
+    const headers = await authHeaders();
+    const res = await fetch(`${API_URL}/api/v1/finance/payments-in/`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) return { data: null, error: true };
+    const data: PaymentIn = await res.json();
+    return { data, error: false };
+  } catch {
+    return { data: null, error: true };
+  }
 };
 
 export const getAccountByApartment = async (appartment_id: number) => {

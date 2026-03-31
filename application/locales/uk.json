@@ -161,5 +161,9 @@
   "envelopes": "Конверти",
   "myContributions": "Мої внески",
   "expenses": "Витрати",
-  "financeEmptyState": "Поки що нічого немає"
+  "financeEmptyState": "Поки що нічого немає",
+  "newPaymentIn": "Новий внесок",
+  "amountPlaceholder": "Сума",
+  "addPhoto": "Додати фото",
+  "processing": "обробляється"
 }

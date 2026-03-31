@@ -24,6 +24,7 @@ import {
   PaymentOut,
 } from '../../../api/main/finance';
 import { formatDateShort } from '../../../helpers/formatDate';
+import PaymentInForm from '../../popups/PaymentInForm';
 
 type Tab = 'envelopes' | 'paymentsIn' | 'paymentsOut';
 
@@ -40,6 +41,7 @@ const FinanceScreen: React.FC = () => {
 
   const [loading, setLoading] = useState(true);
   const [tabLoading, setTabLoading] = useState(false);
+  const [showAddPayment, setShowAddPayment] = useState(false);
 
   const loadInitialData = useCallback(async () => {
     setLoading(true);
@@ -76,6 +78,12 @@ const FinanceScreen: React.FC = () => {
     }, [loadInitialData]),
   );
 
+  const reloadPaymentsIn = useCallback(async () => {
+    if (!buildingId) return;
+    const resp = await getPaymentsIn(buildingId);
+    if (resp.data) setPaymentsIn(resp.data.items);
+  }, [buildingId]);
+
   const handleTabPress = useCallback(
     async (tab: Tab) => {
       setActiveTab(tab);
@@ -88,8 +96,7 @@ const FinanceScreen: React.FC = () => {
         setTabLoading(false);
       } else if (tab === 'paymentsIn' && paymentsIn.length === 0) {
         setTabLoading(true);
-        const resp = await getPaymentsIn(buildingId);
-        if (resp.data) setPaymentsIn(resp.data.items);
+        await reloadPaymentsIn();
         setTabLoading(false);
       } else if (tab === 'paymentsOut' && paymentsOut.length === 0) {
         setTabLoading(true);
@@ -98,8 +105,15 @@ const FinanceScreen: React.FC = () => {
         setTabLoading(false);
       }
     },
-    [buildingId, envelopes.length, paymentsIn.length, paymentsOut.length],
+    [buildingId, envelopes.length, paymentsIn.length, paymentsOut.length, reloadPaymentsIn],
   );
+
+  const handlePaymentAdded = useCallback(async () => {
+    setShowAddPayment(false);
+    setTabLoading(true);
+    await reloadPaymentsIn();
+    setTabLoading(false);
+  }, [reloadPaymentsIn]);
 
   const renderEnvelope = ({ item }: { item: Envelope }) => (
     <TouchableOpacity
@@ -124,7 +138,14 @@ const FinanceScreen: React.FC = () => {
           <Text style={styles.cardDate}>{formatDateShort(item.created_at)}</Text>
         )}
       </View>
-      <Text style={styles.amountGreen}>+{item.amount} {t('uah')}</Text>
+      <View style={styles.amountCol}>
+        {!item.is_approved && (
+          <Text style={styles.pendingLabel}>{t('processing')}</Text>
+        )}
+        <Text style={item.is_approved ? styles.amountGreen : styles.amountOrange}>
+          +{item.amount} {t('uah')}
+        </Text>
+      </View>
     </View>
   );
 
@@ -138,7 +159,9 @@ const FinanceScreen: React.FC = () => {
           <Text style={styles.cardDate}>{formatDateShort(item.created_at)}</Text>
         )}
       </View>
-      <Text style={styles.amountRed}>-{item.amount} {t('uah')}</Text>
+      <Text style={styles.amountRed}>
+        -{item.amount} {t('uah')}
+      </Text>
     </View>
   );
 
@@ -170,31 +193,43 @@ const FinanceScreen: React.FC = () => {
       </View>
 
       {/* Tabs */}
-      <View style={styles.tabBar}>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'envelopes' && styles.tabActive]}
-          onPress={() => handleTabPress('envelopes')}
-        >
-          <Text style={[styles.tabText, activeTab === 'envelopes' && styles.tabTextActive]}>
-            {t('envelopes')}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'paymentsIn' && styles.tabActive]}
-          onPress={() => handleTabPress('paymentsIn')}
-        >
-          <Text style={[styles.tabText, activeTab === 'paymentsIn' && styles.tabTextActive]}>
-            {t('myContributions')}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'paymentsOut' && styles.tabActive]}
-          onPress={() => handleTabPress('paymentsOut')}
-        >
-          <Text style={[styles.tabText, activeTab === 'paymentsOut' && styles.tabTextActive]}>
-            {t('expenses')}
-          </Text>
-        </TouchableOpacity>
+      <View style={styles.tabRow}>
+        <View style={styles.tabBar}>
+          <TouchableOpacity
+            style={[styles.tab, activeTab === 'envelopes' && styles.tabActive]}
+            onPress={() => handleTabPress('envelopes')}
+          >
+            <Text style={[styles.tabText, activeTab === 'envelopes' && styles.tabTextActive]}>
+              {t('envelopes')}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.tab, activeTab === 'paymentsIn' && styles.tabActive]}
+            onPress={() => handleTabPress('paymentsIn')}
+          >
+            <Text style={[styles.tabText, activeTab === 'paymentsIn' && styles.tabTextActive]}>
+              {t('myContributions')}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.tab, activeTab === 'paymentsOut' && styles.tabActive]}
+            onPress={() => handleTabPress('paymentsOut')}
+          >
+            <Text style={[styles.tabText, activeTab === 'paymentsOut' && styles.tabTextActive]}>
+              {t('expenses')}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {activeTab === 'paymentsIn' && (
+          <TouchableOpacity
+            style={styles.addBtn}
+            onPress={() => setShowAddPayment(true)}
+            activeOpacity={0.7}
+          >
+            <Ionicons name="add" size={22} color="#3A5160" />
+          </TouchableOpacity>
+        )}
       </View>
 
       {/* List */}
@@ -211,6 +246,15 @@ const FinanceScreen: React.FC = () => {
               <Text style={styles.emptyText}>{t('financeEmptyState')}</Text>
             ) : null
           }
+        />
+      )}
+
+      {buildingId !== null && (
+        <PaymentInForm
+          visible={showAddPayment}
+          buildingId={buildingId}
+          onClose={() => setShowAddPayment(false)}
+          onSuccess={handlePaymentAdded}
         />
       )}
     </SafeAreaView>
@@ -233,10 +277,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
   },
-  tabBar: {
+  tabRow: {
     flexDirection: 'row',
+    alignItems: 'center',
     marginHorizontal: 16,
     marginTop: 16,
+  },
+  tabBar: {
+    flex: 1,
+    flexDirection: 'row',
     backgroundColor: '#e8e8e8',
     borderRadius: 12,
     padding: 4,
@@ -264,6 +313,15 @@ const styles = StyleSheet.create({
     color: '#333',
     fontWeight: '600',
   },
+  addBtn: {
+    marginLeft: 8,
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: '#e8f0f5',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   list: { padding: 16, paddingBottom: 80 },
   tabSpinner: { marginTop: 40 },
   card: {
@@ -281,9 +339,12 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   cardLeft: { flex: 1, marginRight: 12 },
-  cardTitle: { fontSize: 15, color: '#333', fontWeight: '500', flex: 1, marginRight: 8 },
+  cardTitle: { fontSize: 15, color: '#333', fontWeight: '500' },
   cardDate: { fontSize: 12, color: '#999', marginTop: 3 },
+  amountCol: { alignItems: 'flex-end' },
+  pendingLabel: { fontSize: 11, color: '#e67e22', marginBottom: 2 },
   amountGreen: { fontSize: 15, fontWeight: '700', color: '#27ae60' },
+  amountOrange: { fontSize: 15, fontWeight: '700', color: '#e67e22' },
   amountRed: { fontSize: 15, fontWeight: '700', color: '#e74c3c' },
   emptyText: { textAlign: 'center', color: '#aaa', marginTop: 40, fontSize: 15 },
 });

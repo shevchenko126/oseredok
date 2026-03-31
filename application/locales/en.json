@@ -161,5 +161,9 @@
   "envelopes": "Envelopes",
   "myContributions": "My contributions",
   "expenses": "Expenses",
-  "financeEmptyState": "No items yet"
+  "financeEmptyState": "No items yet",
+  "newPaymentIn": "New contribution",
+  "amountPlaceholder": "Amount",
+  "addPhoto": "Add photo",
+  "processing": "processing"
 }

@@ -68,6 +68,7 @@ def upgrade() -> None:
         sa.Column('description', sa.String(), nullable=True),
         sa.Column('amount', sa.Numeric(12, 2), nullable=False),
         sa.Column('is_approved', sa.Boolean(), nullable=False, server_default='false'),
+        sa.Column('file_id', sa.String(), nullable=True),
         sa.Column('created_by_id', sa.Integer(), nullable=True),
         sa.Column('created_at', sa.TIMESTAMP(), server_default=sa.text('now()'), nullable=True),
         sa.ForeignKeyConstraint(['building_id'], ['building.id']),
