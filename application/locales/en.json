@@ -155,5 +155,15 @@
   "selectBuilding": "Select building",
   "selectApartment": "Select apartment",
   "isOwner": "I am the owner",
-  "setupBuildingSubmit": "Continue"
+  "setupBuildingSubmit": "Continue",
+  "yourBalance": "Your balance",
+  "uah": "UAH",
+  "envelopes": "Envelopes",
+  "myContributions": "My contributions",
+  "expenses": "Expenses",
+  "financeEmptyState": "No items yet",
+  "newPaymentIn": "New contribution",
+  "amountPlaceholder": "Amount",
+  "addPhoto": "Add photo",
+  "processing": "processing"
 }

@@ -15,6 +15,12 @@ class AppartmentService:
         self.db.add(apartment)
         self.db.commit()
         self.db.refresh(apartment)
+
+        from modules.finance.account.models import Account
+        account = Account(appartment_id=apartment.id, balance=0)
+        self.db.add(account)
+        self.db.commit()
+
         return apartment
 
     def get_by_id(self, apartment_id: int) -> Apartment:

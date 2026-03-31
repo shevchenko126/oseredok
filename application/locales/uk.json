@@ -155,5 +155,15 @@
   "selectBuilding": "Оберіть будинок",
   "selectApartment": "Оберіть квартиру",
   "isOwner": "Я є власником",
-  "setupBuildingSubmit": "Продовжити"
+  "setupBuildingSubmit": "Продовжити",
+  "yourBalance": "Ваш баланс",
+  "uah": "грн",
+  "envelopes": "Конверти",
+  "myContributions": "Мої внески",
+  "expenses": "Витрати",
+  "financeEmptyState": "Поки що нічого немає",
+  "newPaymentIn": "Новий внесок",
+  "amountPlaceholder": "Сума",
+  "addPhoto": "Додати фото",
+  "processing": "обробляється"
 }
