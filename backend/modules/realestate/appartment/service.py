@@ -23,10 +23,12 @@ class AppartmentService:
             raise HTTPException(status_code=404, detail="Apartment not found")
         return apartment
 
-    def get_list(self, page: int = 1, user_id: int | None = None) -> PaginationSchema:
+    def get_list(self, page: int = 1, user_id: int | None = None, building_id: int | None = None) -> PaginationSchema:
         query = self.db.query(Apartment).filter(Apartment.is_active == True)
         if user_id is not None:
             query = query.join(ApartmentUser).filter(ApartmentUser.user_id == user_id)
+        if building_id is not None:
+            query = query.filter(Apartment.building_id == building_id)
         total = query.count()
         items = query.offset((page - 1) * PAGE_SIZE).limit(PAGE_SIZE).all()
         return paginate(page, total, items)

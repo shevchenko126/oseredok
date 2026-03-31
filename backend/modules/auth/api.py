@@ -21,7 +21,10 @@ from .schemas import (
     SendConfirmationCodeSchema,
     ConfirmEmailSchema,
     UserUpdateSchema,
+    SetupBuildingSchema,
 )
+from modules.realestate.building.models import BuildingUser, BuildingUserRole
+from modules.realestate.appartment.models import ApartmentUser
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -91,6 +94,30 @@ def get_me(
     user: User = Depends(get_user),
 ):
     """Get info about current user."""
+    return UserOutSchema.from_orm(user)
+
+
+@router.post("/setup-building/", response_model=UserOutSchema)
+def setup_building(
+    data: SetupBuildingSchema,
+    user: User = Depends(get_user),
+    db: Session = Depends(get_db),
+):
+    building_user = BuildingUser(
+        building_id=data.building_id,
+        user_id=user.id,
+        role=BuildingUserRole.Resident,
+    )
+    db.add(building_user)
+
+    apartment_user = ApartmentUser(
+        apartment_id=data.apartment_id,
+        user_id=user.id,
+        is_owner=data.is_owner,
+    )
+    db.add(apartment_user)
+    db.commit()
+    db.refresh(user)
     return UserOutSchema.from_orm(user)
 
 

@@ -149,5 +149,11 @@
   "passwordRuleNumber": "Містить принаймні одну цифру",
   "passwordRuleLowercase": "Містить принаймні одну літеру у нижньому регістрі",
   "passwordRuleUppercase": "Містить принаймні одну літеру у верхньому регістрі",
-  "editName": "Редагувати назву"
+  "editName": "Редагувати назву",
+  "selectBuildingHeading": "Ваш будинок",
+  "selectBuildingSubheading": "Оберіть будинок та квартиру, де ви проживаєте",
+  "selectBuilding": "Оберіть будинок",
+  "selectApartment": "Оберіть квартиру",
+  "isOwner": "Я є власником",
+  "setupBuildingSubmit": "Продовжити"
 }

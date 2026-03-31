@@ -7,6 +7,7 @@ import DocumentsStack from './elements/screens/DocumentsScreens';
 import ProfileStack from './elements/screens/ProfileScreens';
 import type { RootStackParamList } from './navigation/types';
 import StartScreen from './elements/screens/auth/StartScreen';
+import BuildingSetupScreen from './elements/screens/auth/BuildingSetupScreen';
 import LoadingScreen from './elements/screens/tech/Loading';
 import { getToken } from './helpers/keychain';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -35,6 +36,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   const [isAuth, setIsAuth] = React.useState<boolean | null>(null);
+  const [needsBuildingSetup, setNeedsBuildingSetup] = React.useState(false);
   const [language, setLanguageState] = React.useState<LanguageCode>(DEFAULT_LANGUAGE);
 
   const changeLanguage = useCallback<React.Dispatch<React.SetStateAction<LanguageCode>>>((next) => {
@@ -47,6 +49,7 @@ export default function App() {
   const logout = useCallback(async () => {
     await Keychain.resetGenericPassword();
     setIsAuth(false);
+    setNeedsBuildingSetup(false);
     changeLanguage(DEFAULT_LANGUAGE);
   }, [changeLanguage]);
 
@@ -66,11 +69,15 @@ export default function App() {
     (async () => {
       try {
         const { data } = await getMe();
-        if (!cancelled && data?.language) {
+        if (cancelled) return;
+        if (data?.language) {
           changeLanguage(resolveLanguageCode(data.language));
         }
+        if (!(data as any)?.building) {
+          setNeedsBuildingSetup(true);
+        }
       } catch (error) {
-        console.error('Load language failed', error);
+        console.error('Load user failed', error);
       }
     })();
 
@@ -189,7 +196,9 @@ export default function App() {
         <LanguageContext.Provider value={languageContextValue}>
           <AuthContext.Provider value={{ logout, isAuth: Boolean(isAuth) }}>
             <NavigationContainer ref={navigationRef}>
-                  {isAuth ? (
+                  {isAuth && needsBuildingSetup ? (
+                    <BuildingSetupScreen onDone={() => setNeedsBuildingSetup(false)} />
+                  ) : isAuth ? (
                     <>
                       <RootStack.Navigator
                         initialRouteName="News"
