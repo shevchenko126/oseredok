@@ -50,6 +50,7 @@ def upgrade() -> None:
         'envelope',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('building_id', sa.Integer(), nullable=False),
+        sa.Column('title', sa.String(), nullable=False),
         sa.Column('link', sa.String(), nullable=False),
         sa.Column('created_by_id', sa.Integer(), nullable=True),
         sa.Column('created_at', sa.TIMESTAMP(), server_default=sa.text('now()'), nullable=True),

@@ -12,6 +12,7 @@ class Envelope(Base):
     building_id = Column(Integer, ForeignKey("building.id"), nullable=False)
     building = relationship("Building", backref="envelopes", lazy=True)
 
+    title = Column(String, nullable=False)
     link = Column(String, nullable=False)
 
     created_by_id = Column(Integer, ForeignKey("user.id"), nullable=True)

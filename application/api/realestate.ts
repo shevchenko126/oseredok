@@ -70,6 +70,30 @@ export const getApartmentsByBuilding = async (
   }
 };
 
+export const getMyApartment = async (
+  user_id: number,
+  building_id: number,
+): Promise<{ data: Apartment | null; error: boolean }> => {
+  try {
+    const token = await getToken();
+    const res = await fetch(
+      `${API_URL}/api/v1/appartments/?user_id=${user_id}&building_id=${building_id}&page=1`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    if (!res.ok) throw new Error(`Status: ${res.status}`);
+    const data: PaginatedResponse<Apartment> = await res.json();
+    return { data: data.items[0] ?? null, error: false };
+  } catch (error) {
+    console.error('getMyApartment error:', error);
+    return { data: null, error: true };
+  }
+};
+
 export const setupBuilding = async (
   building_id: number,
   apartment_id: number,
