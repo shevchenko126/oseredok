@@ -165,5 +165,6 @@
   "newPaymentIn": "Новий внесок",
   "amountPlaceholder": "Сума",
   "addPhoto": "Додати фото",
-  "processing": "обробляється"
+  "processing": "обробляється",
+  "documentsEmptyState": "Документів ще немає"
 }

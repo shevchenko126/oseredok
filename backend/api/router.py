@@ -8,6 +8,7 @@ from modules.finance.account.api import router as account_router
 from modules.finance.envelope.api import router as envelope_router
 from modules.finance.paymentin.api import router as paymentin_router
 from modules.finance.paymentout.api import router as paymentout_router
+from modules.documents.api import router as documents_router
 
 api_router = APIRouter()
 URL_PREFIX = "/api/v1"
@@ -21,3 +22,4 @@ api_router.include_router(account_router, prefix=URL_PREFIX + "/finance/accounts
 api_router.include_router(envelope_router, prefix=URL_PREFIX + "/finance/envelopes", tags=["finance"])
 api_router.include_router(paymentin_router, prefix=URL_PREFIX + "/finance/payments-in", tags=["finance"])
 api_router.include_router(paymentout_router, prefix=URL_PREFIX + "/finance/payments-out", tags=["finance"])
+api_router.include_router(documents_router, prefix=URL_PREFIX + "/documents", tags=["documents"])

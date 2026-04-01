@@ -165,5 +165,6 @@
   "newPaymentIn": "New contribution",
   "amountPlaceholder": "Amount",
   "addPhoto": "Add photo",
-  "processing": "processing"
+  "processing": "processing",
+  "documentsEmptyState": "No documents yet"
 }
