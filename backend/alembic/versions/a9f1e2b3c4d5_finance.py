@@ -1,14 +1,8 @@
-"""finance module
-
-Revision ID: a9f1e2b3c4d5
-Revises: 32af352b3dbe
-Create Date: 2026-03-31 00:00:00.000000
-
-"""
 from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
+from sqlalchemy.dialects import postgresql
 
 
 # revision identifiers, used by Alembic.
@@ -18,16 +12,25 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 
+building_user_role_enum = postgresql.ENUM(
+    'Resident',
+    'BuildingManager',
+    'SupportManager',
+    'Accountant',
+    name='building_user_role'
+)
+
+
 def upgrade() -> None:
-    # Add role column to buildinguser (was defined in model but not migrated)
+    # Сначала создаём enum type
+    building_user_role_enum.create(op.get_bind(), checkfirst=True)
+
+    # Потом добавляем колонку
     op.add_column(
         'buildinguser',
         sa.Column(
             'role',
-            sa.Enum(
-                'Resident', 'BuildingManager', 'SupportManager', 'Accountant',
-                name='building_user_role'
-            ),
+            building_user_role_enum,
             nullable=False,
             server_default='Resident',
         )
@@ -103,4 +106,5 @@ def downgrade() -> None:
     op.drop_index(op.f('ix_account_id'), table_name='account')
     op.drop_table('account')
     op.drop_column('buildinguser', 'role')
-    op.execute("DROP TYPE IF EXISTS building_user_role")
+
+    building_user_role_enum.drop(op.get_bind(), checkfirst=True)

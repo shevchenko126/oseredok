@@ -1,6 +1,12 @@
 from passlib.context import CryptContext
+import hashlib
+import base64
 
-PWD_CONTEXT = CryptContext(schemes=["bcrypt"], deprecated="auto")
+def normalize_password(password: str) -> str:
+    digest = hashlib.sha256(password.encode("utf-8")).digest()
+    return base64.b64encode(digest).decode("ascii")
+
+PWD_CONTEXT = CryptContext(schemes=["argon2"], deprecated="auto")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return PWD_CONTEXT.verify(plain_password, hashed_password)

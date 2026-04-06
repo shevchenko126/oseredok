@@ -41,7 +41,6 @@ def create_access_token(*, sub: str, remember=False, user_obj=None) -> str:
             "user": {
                 "id": user_obj.id,
                 "email": user_obj.email,
-                "role": user_obj.role,
                 "created_on": str(user_obj.created_on),
             }
         }
