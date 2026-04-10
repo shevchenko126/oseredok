@@ -21,5 +21,6 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     is_confirmed = Column(Boolean, default=False)
     email_check_code = Column(String, nullable=True)
+    is_email_verified = Column(Boolean, default=False)
     last_login = Column(TIMESTAMP)
     created_on = Column(TIMESTAMP, server_default=func.now())

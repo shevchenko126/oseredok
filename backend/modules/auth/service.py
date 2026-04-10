@@ -90,6 +90,7 @@ class AuthService:
 
         code = str(random.randint(100000, 999999))
         user.email_check_code = code
+        self.db.add(user)
         self.db.commit()
 
         message = MessageSchema(
@@ -112,6 +113,8 @@ class AuthService:
             raise HTTPException(status_code=400, detail="Invalid confirmation code")
 
         user.is_confirmed = True
+        user.is_email_verified = True
         user.email_check_code = None
+        self.db.add(user)
         self.db.commit()
         return True
